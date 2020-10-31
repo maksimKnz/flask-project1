@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 import data
 
-print(data.tours)
+
 app = Flask(__name__)
 tours = data.tours
 departures = data.departures
@@ -27,4 +27,5 @@ def show_tour(id):
     return render_template('tour.html', tour=tours[id], departures=departures)
 
 
-app.run()
+if __name__ == '__main__':
+    app.run()
