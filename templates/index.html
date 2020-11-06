@@ -19,9 +19,10 @@
              <img class="card-img-top embed-responsive-item" src="{{tour.picture}} alt="" />
           </div>          
           <div class="card-body">
-            <h2 class="h5 card-title">{{tour.title}}</h2>
-            <p class="card-text">{{tour.description|truncate(100,True)}}</p>
-            <a href="/tours/{{id}}" class="btn btn-sm btn-primary">Подробнее</a>
+            <h5 class="h5 card-title">{{tour.title}}</h5>
+            <p class="card-text">{{tour.description|truncate(64,True)}}</p>
+            <a href="/tours/{{id}}" class="btn btn-sm btn-primary btn-block">Подробнее</a>
+            <p class="card-footer">{{tour.nights}} ночей, {{tour.stars}}★, {{tour.price}} руб</p>
           </div>
         </div>
       </div>
@@ -29,4 +30,14 @@
       {% endfor %}
     </div>
   </main>
+<script>
+var maxHeight = 0;
+$('.card-title').each(function(){
+  if ($(this).height() > maxHeight) {
+    maxHeight = $(this).height();
+  }
+});
+$('.card-title').each(function(){
+  $(this).css('min-height', maxHeight + 'px');
+});</script>
 {% endblock %}
