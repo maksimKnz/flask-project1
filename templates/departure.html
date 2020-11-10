@@ -4,21 +4,21 @@
   <main class="container mt-3">
     <h1 class="display-5 mt-4">Летим {{departures.get(departure)}}</h1>
 
-    {% set min_price_tour = tours.values()|min(attribute='price') %}
-    {% set max_price_tour = tours.values()|max(attribute='price') %}
-    {% set nights_from = tours.values()|min(attribute='nights') %}
-    {% set nights_to = tours.values()|max(attribute='nights') %}
+    {% set min_price_tour = tours|min(attribute='price') %}
+    {% set max_price_tour = tours|max(attribute='price') %}
+    {% set nights_from = tours|min(attribute='nights') %}
+    {% set nights_to = tours|max(attribute='nights') %}
     <p class="mb-4">Найдено {{tours|length}} туров, от {{min_price_tour.price}} до {{max_price_tour.price}} и от {{nights_from.nights}} ночей до {{nights_to.nights}} ночей</p>
     <!-- CARDS -->
     <div class="row mt-5">
-      {% for id,tour in tours.items() %}
+      {% for tour in tours %}
       <div class="col-4">
         <div class="card mb-4">
           <img src="{{tour.picture}}" class="card-img-top img-fluid" alt="">
           <div class="card-body">
             <h2 class="h5 card-title">{{tour.title}}</h2>
             <p class="card-text">{{tour.description|truncate(64,True)}}</p>
-            <a href="/tours/{{id}}" class="btn btn-sm btn-primary btn-block">Подробнее</a>
+            <a href="/tours/{{tour.id}}" class="btn btn-sm btn-primary btn-block">Подробнее</a>
             <p class="card-footer">{{tour.nights}} ночей, {{tour.stars}}★, {{tour.price}} руб</p>
           </div>
         </div>
